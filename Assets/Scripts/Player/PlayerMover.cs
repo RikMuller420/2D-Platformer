@@ -9,9 +9,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private PlayerGroundChecker _playerGroundChecker;
 
-    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] public float _moveSpeed { get; private set; } = 5f;
     [SerializeField] private float _jumpForce = 12f;
-
 
     private void OnEnable()
     {
