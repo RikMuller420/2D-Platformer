@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerFlipUpdater : MonoBehaviour
+public class CreatureFacingDirectionUpdater : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _playerRigidbody;
     [SerializeField] private Transform _transformToFlip;

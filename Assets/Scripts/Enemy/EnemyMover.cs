@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyGroundChecker))]
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1.5f;
+    [SerializeField] private float _speed = 1.2f;
     [SerializeField] private float _maxPatrolDistance = 5f;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private EnemyGroundChecker _groundChecker;
