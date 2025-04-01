@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e18d195dd3097d46b22054792458315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 4878657935211296100}
+  _animator: {fileID: 4878657935211296100}
   _rigidbody: {fileID: 2817644964821940973}
   _moveSpeedAnimationCorrection: 0.2
   _playerGroundChecker: {fileID: 3714832834923154950}
