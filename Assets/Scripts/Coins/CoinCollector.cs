@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class CoinCollector : MonoBehaviour
 {
+    public event Action CoinCollectedAction;
+
     private int _coinCount = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,5 +20,6 @@ public class CoinCollector : MonoBehaviour
     {
         _coinCount++;
         coin.Deactivate();
+        CoinCollectedAction?.Invoke();
     }
 }

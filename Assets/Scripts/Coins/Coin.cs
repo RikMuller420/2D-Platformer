@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,9 +11,17 @@ public class Coin : MonoBehaviour
     [SerializeField] private Collider2D _collider;
     [SerializeField] private float _disableDelay = 2f;
 
+    private Action _releaseInPoolDelegate;
+
+    public void SetReleaseInPoolDelegate(Action releaseInPoolDelegate)
+    {
+        _releaseInPoolDelegate = releaseInPoolDelegate;
+    }
+
     public void Activate()
     {
         _collider.enabled = true;
+        gameObject.SetActive(true);
     }
 
     public void Deactivate()
@@ -27,5 +36,6 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         gameObject.SetActive(false);
+        _releaseInPoolDelegate?.Invoke();
     }
 }
