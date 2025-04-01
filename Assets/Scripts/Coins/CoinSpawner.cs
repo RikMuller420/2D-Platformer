@@ -26,8 +26,6 @@ public class CoinSpawner : MonoBehaviour
 
     private void SpawnNewCoin()
     {
-        Coin coin = _coinPool.GetCoin();
-
         int randomIndex = Random.Range(0, _spawnPoints.Count);
         Transform closestPointToPlayer = FindClosestSpawnPointToPlayer();
 
@@ -36,6 +34,7 @@ public class CoinSpawner : MonoBehaviour
             randomIndex = ++randomIndex % _spawnPoints.Count;
         }
 
+        Coin coin = _coinPool.GetCoin();
         coin.transform.position = _spawnPoints[randomIndex].position;
     }
 

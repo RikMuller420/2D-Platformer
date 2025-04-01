@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerGroundChecker : MonoBehaviour
 {
-    public event Action GroundedStateChanged;
-
     [SerializeField] private Transform _checkPosition;
     [SerializeField] private float _checkRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
+
+    public event Action GroundedStateChanged;
 
     public bool IsGrounded { get; private set; }
 

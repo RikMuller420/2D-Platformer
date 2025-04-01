@@ -9,19 +9,19 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private PlayerGroundChecker _playerGroundChecker;
 
-    [SerializeField] public float _moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _jumpForce = 12f;
 
     private void OnEnable()
     {
-        _inputHandler.horizontalMoveInput += Move;
-        _inputHandler.jumpInput += Jump;
+        _inputHandler.HorizontalMoveInputAction += Move;
+        _inputHandler.JumpInputAction += Jump;
     }
 
     private void OnDisable()
     {
-        _inputHandler.horizontalMoveInput -= Move;
-        _inputHandler.jumpInput -= Jump;
+        _inputHandler.HorizontalMoveInputAction -= Move;
+        _inputHandler.JumpInputAction -= Jump;
     }
 
     private void Move(float moveInput)
