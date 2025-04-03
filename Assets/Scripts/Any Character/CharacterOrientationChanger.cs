@@ -7,6 +7,8 @@ public class CharacterOrientationChanger : MonoBehaviour
     [SerializeField] private Transform _transformToFlip;
 
     private bool _isFacingRight = true;
+    private float _facingRightAngle = 0f;
+    private float _facingLeftAngle = 180;
 
     private void LateUpdate()
     {
@@ -25,8 +27,7 @@ public class CharacterOrientationChanger : MonoBehaviour
     private void Flip()
     {
         _isFacingRight = !_isFacingRight;
-        Vector3 scale = _transformToFlip.localScale;
-        scale.x *= -1;
-        _transformToFlip.localScale = scale;
+        float rotateAngle = _isFacingRight ? _facingRightAngle : _facingLeftAngle;
+        _transformToFlip.rotation = Quaternion.Euler(0f, rotateAngle, 0f);
     }
 }

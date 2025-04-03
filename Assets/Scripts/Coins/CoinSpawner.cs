@@ -4,19 +4,26 @@ using UnityEngine;
 [RequireComponent(typeof(CoinPool))]
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private CoinCollector _player;
-    [SerializeField] private CoinCollector _coinCollector;
     [SerializeField] private CoinPool _coinPool;
+    [SerializeField] private PlayerMover _player;
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
+
+    private Coin _activeCoin;
 
     private void OnEnable()
     {
-        _coinCollector.CoinCollectedAction += SpawnNewCoin;
+        if (_activeCoin != null)
+        {
+            _activeCoin.WasDisabled += CoinWasCollectd;
+        }
     }
 
     private void OnDisable()
     {
-        _coinCollector.CoinCollectedAction -= SpawnNewCoin;
+        if (_activeCoin != null)
+        {
+            _activeCoin.WasDisabled -= CoinWasCollectd;
+        }
     }
 
     private void Start()
@@ -34,22 +41,32 @@ public class CoinSpawner : MonoBehaviour
             randomIndex = ++randomIndex % _spawnPoints.Count;
         }
 
-        Coin coin = _coinPool.GetCoin();
-        coin.transform.position = _spawnPoints[randomIndex].position;
+        _activeCoin = _coinPool.GetCoin();
+        _activeCoin.transform.position = _spawnPoints[randomIndex].position;
+        _activeCoin.WasDisabled += CoinWasCollectd;
+    }
+
+    private void CoinWasCollectd()
+    {
+        _activeCoin.WasDisabled -= CoinWasCollectd;
+        _coinPool.ReleaseCoin(_activeCoin);
+        _activeCoin = null;
+
+        SpawnNewCoin();
     }
 
     private Transform FindClosestSpawnPointToPlayer()
     {
         Transform closestPointToPlayer = _spawnPoints[0];
-        float minDistanceToPlayer = float.MaxValue;
+        float minSqrDistanceToPlayer = float.MaxValue;
 
         foreach (Transform spawnPoint in _spawnPoints)
         {
-            float distanceToPlayer = (spawnPoint.position - _player.transform.position).magnitude;
+            float sqrDistanceToPlayer = (spawnPoint.position - _player.transform.position).sqrMagnitude;
 
-            if (distanceToPlayer < minDistanceToPlayer)
+            if (sqrDistanceToPlayer < minSqrDistanceToPlayer)
             {
-                minDistanceToPlayer = distanceToPlayer;
+                minSqrDistanceToPlayer = sqrDistanceToPlayer;
                 closestPointToPlayer = spawnPoint;
             }
         }

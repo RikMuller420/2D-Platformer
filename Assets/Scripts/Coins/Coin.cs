@@ -11,12 +11,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private Collider2D _collider;
     [SerializeField] private float _disableDelay = 2f;
 
-    private Action _releaseInPoolDelegate;
-
-    public void SetReleaseInPoolDelegate(Action releaseInPoolDelegate)
-    {
-        _releaseInPoolDelegate = releaseInPoolDelegate;
-    }
+    public event Action WasDisabled;
 
     public void Activate()
     {
@@ -36,6 +31,6 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         gameObject.SetActive(false);
-        _releaseInPoolDelegate?.Invoke();
+        WasDisabled?.Invoke();
     }
 }

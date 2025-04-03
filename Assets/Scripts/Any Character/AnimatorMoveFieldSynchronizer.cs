@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AnimatorMoveFieldSynchronizer : MonoBehaviour
 {
-    private const string BlendSpeedValueName = "MoveSpeed";
+    private readonly int MoveSpeed = Animator.StringToHash(nameof(MoveSpeed));
 
     [SerializeField] protected Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -12,6 +12,6 @@ public class AnimatorMoveFieldSynchronizer : MonoBehaviour
     private void Update()
     {
         float animatorSpeed = Mathf.Abs(_rigidbody.linearVelocityX) * _moveSpeedAnimationCorrection;
-        _animator.SetFloat(BlendSpeedValueName, animatorSpeed);
+        _animator.SetFloat(MoveSpeed, animatorSpeed);
     }
 }

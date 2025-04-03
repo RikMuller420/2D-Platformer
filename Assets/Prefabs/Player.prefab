@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6423673637567861936}
   - component: {fileID: 864911255553756888}
   - component: {fileID: 2817644964821940973}
+  - component: {fileID: 263875183146009728}
   - component: {fileID: 3866908028706750014}
   - component: {fileID: 3714832834923154950}
   - component: {fileID: 6944596832704262714}
@@ -135,6 +136,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &263875183146009728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717723302548503078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fc907bfcc8d744baae967b7fc3a817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputHandler: {fileID: 0}
+  mover: {fileID: 3866908028706750014}
+  _groundChecker: {fileID: 3714832834923154950}
 --- !u!114 &3866908028706750014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,9 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07b3b301ef64e344a4715d599254181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputHandler: {fileID: 0}
   _rigidbody: {fileID: 2817644964821940973}
-  _playerGroundChecker: {fileID: 3714832834923154950}
   _moveSpeed: 5
   _jumpForce: 12
 --- !u!114 &3714832834923154950
