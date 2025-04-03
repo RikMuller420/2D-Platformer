@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputHandler: {fileID: 0}
-  mover: {fileID: 3866908028706750014}
+  _mover: {fileID: 3866908028706750014}
   _groundChecker: {fileID: 3714832834923154950}
 --- !u!114 &3866908028706750014
 MonoBehaviour:

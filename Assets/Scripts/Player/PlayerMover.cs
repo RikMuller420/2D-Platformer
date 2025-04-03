@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Collider2D))]
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody;

@@ -5,14 +5,15 @@ public class InputHandler : MonoBehaviour
 {
     private const string HorizontalAxisName = "Horizontal";
     private const KeyCode JumpKeyCode = KeyCode.Space;
+
     private bool _isJump;
 
-    public float MoveInput { get; private set; }
-    public bool IsJump { get => GetIsJump(); }
+    public float HorizontalMove { get; private set; }
+    public bool IsJumpTrigger { get => GetIsJump(); }
 
     private void Update()
     {
-        MoveInput = Input.GetAxis(HorizontalAxisName);
+        HorizontalMove = Input.GetAxis(HorizontalAxisName);
 
         if (Input.GetKeyDown(JumpKeyCode))
         {
@@ -20,7 +21,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    public bool GetIsJump()
+    private bool GetIsJump()
     {
         bool bufferIsJump = _isJump;
         _isJump = false;

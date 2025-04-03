@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private Collider2D _collider;
     [SerializeField] private float _disableDelay = 2f;
 
-    public event Action WasDisabled;
+    public event Action OnDisabled;
 
     public void Activate()
     {
@@ -31,6 +31,6 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         gameObject.SetActive(false);
-        WasDisabled?.Invoke();
+        OnDisabled?.Invoke();
     }
 }

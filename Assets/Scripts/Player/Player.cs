@@ -5,16 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputHandler _inputHandler;
-    [SerializeField] private PlayerMover mover;
+    [SerializeField] private PlayerMover _mover;
     [SerializeField] private PlayerGroundChecker _groundChecker;
 
     private void FixedUpdate()
     {
-        mover.Move(_inputHandler.MoveInput);
+        _mover.Move(_inputHandler.HorizontalMove);
 
-        if (_inputHandler.IsJump && _groundChecker.IsGrounded)
+        if (_inputHandler.IsJumpTrigger && _groundChecker.IsGrounded)
         {
-            mover.Jump();
+            _mover.Jump();
         }
     }
 }

@@ -5,9 +5,9 @@ public class CoinPool : MonoBehaviour
 {
     [SerializeField] private Coin _coinPrefab;
 
+    private ObjectPool<Coin> _pool;
     private int _poolCapacity = 10;
     private int _poolMaxSize = 10;
-    private ObjectPool<Coin> _pool;
 
     private void Awake()
     {

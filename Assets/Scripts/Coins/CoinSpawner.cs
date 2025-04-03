@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private CoinPool _coinPool;
-    [SerializeField] private PlayerMover _player;
+    [SerializeField] private Player _player;
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
     private Coin _activeCoin;
@@ -14,7 +14,7 @@ public class CoinSpawner : MonoBehaviour
     {
         if (_activeCoin != null)
         {
-            _activeCoin.WasDisabled += CoinWasCollectd;
+            _activeCoin.OnDisabled += CoinDisabled;
         }
     }
 
@@ -22,7 +22,7 @@ public class CoinSpawner : MonoBehaviour
     {
         if (_activeCoin != null)
         {
-            _activeCoin.WasDisabled -= CoinWasCollectd;
+            _activeCoin.OnDisabled -= CoinDisabled;
         }
     }
 
@@ -43,12 +43,12 @@ public class CoinSpawner : MonoBehaviour
 
         _activeCoin = _coinPool.GetCoin();
         _activeCoin.transform.position = _spawnPoints[randomIndex].position;
-        _activeCoin.WasDisabled += CoinWasCollectd;
+        _activeCoin.OnDisabled += CoinDisabled;
     }
 
-    private void CoinWasCollectd()
+    private void CoinDisabled()
     {
-        _activeCoin.WasDisabled -= CoinWasCollectd;
+        _activeCoin.OnDisabled -= CoinDisabled;
         _coinPool.ReleaseCoin(_activeCoin);
         _activeCoin = null;
 

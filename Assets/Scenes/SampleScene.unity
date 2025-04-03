@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPool: {fileID: 313159814}
-  _player: {fileID: 2045503584}
+  _player: {fileID: 2045503587}
   _spawnPoints:
   - {fileID: 949495039}
   - {fileID: 273992381}
@@ -1557,15 +1557,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6423673637567861936, guid: 9f32ad2b50153984daf63a07e186827e, type: 3}
   m_PrefabInstance: {fileID: 3691278282691505219}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2045503584 stripped
+--- !u!114 &2045503587 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3866908028706750014, guid: 9f32ad2b50153984daf63a07e186827e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 263875183146009728, guid: 9f32ad2b50153984daf63a07e186827e, type: 3}
   m_PrefabInstance: {fileID: 3691278282691505219}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07b3b301ef64e344a4715d599254181, type: 3}
+  m_Script: {fileID: 11500000, guid: c0fc907bfcc8d744baae967b7fc3a817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2053319179

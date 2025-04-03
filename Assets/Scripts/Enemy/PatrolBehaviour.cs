@@ -5,12 +5,9 @@ public class PatrolBehaviour : MonoBehaviour
 {
     [SerializeField] private EnemyGroundChecker _groundChecker;
     [SerializeField] private float _maxPatrolDistance = 5f;
-    [SerializeField] private float _speed = 1.2f;
 
     private Vector2 _startPatrolPoint;
     private Direction _moveDirection = Direction.Right;
-
-    public float Speed { get => _speed; }
 
     private void Awake()
     {
