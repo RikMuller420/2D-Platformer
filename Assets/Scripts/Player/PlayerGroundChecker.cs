@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerGroundChecker : MonoBehaviour
 {
-    [SerializeField] private Transform _checkPosition;
     [SerializeField] private float _checkRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
 
@@ -13,7 +12,7 @@ public class PlayerGroundChecker : MonoBehaviour
 
     private void Update()
     {
-        bool isGrounded = Physics2D.OverlapCircle(_checkPosition.position, _checkRadius, _groundLayer);
+        bool isGrounded = Physics2D.OverlapCircle(transform.position, _checkRadius, _groundLayer);
 
         if (isGrounded != IsGrounded)
         {

@@ -1,19 +1,22 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : CreatureMover
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private PlayerGroundChecker _groundChecker;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _jumpForce = 12f;
 
     public void Move(float moveInput)
     {
-        _rigidbody.linearVelocityX = moveInput * _moveSpeed;
+        float velocityX = moveInput * _moveSpeed;
+        MoveHorizontal(velocityX);
     }
 
-    public void Jump()
+    public void TryJump()
     {
-        _rigidbody.linearVelocityY = _jumpForce;
+        if (_groundChecker.IsGrounded)
+        {
+            Rigidbody.linearVelocityY = _jumpForce;
+        }
     }
 }

@@ -9,7 +9,6 @@ public class InputHandler : MonoBehaviour
     private bool _isJump;
 
     public float HorizontalMove { get; private set; }
-    public bool IsJumpTrigger { get => GetIsJump(); }
 
     private void Update()
     {
@@ -21,7 +20,7 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private bool GetIsJump()
+    public bool GetIsJumpTrigger()
     {
         bool bufferIsJump = _isJump;
         _isJump = false;

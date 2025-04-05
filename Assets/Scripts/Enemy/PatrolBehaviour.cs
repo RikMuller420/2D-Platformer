@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyGroundChecker))]
 public class PatrolBehaviour : MonoBehaviour
 {
     [SerializeField] private EnemyGroundChecker _groundChecker;

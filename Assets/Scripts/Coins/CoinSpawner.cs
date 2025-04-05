@@ -5,10 +5,10 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private CoinPool _coinPool;
-    [SerializeField] private Player _player;
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
     private Coin _activeCoin;
+    private int _lastSpawnIndex = int.MaxValue;
 
     private void OnEnable()
     {
@@ -34,9 +34,8 @@ public class CoinSpawner : MonoBehaviour
     private void SpawnNewCoin()
     {
         int randomIndex = Random.Range(0, _spawnPoints.Count);
-        Transform closestPointToPlayer = FindClosestSpawnPointToPlayer();
 
-        if (closestPointToPlayer == _spawnPoints[randomIndex])
+        if (randomIndex == _lastSpawnIndex)
         {
             randomIndex = ++randomIndex % _spawnPoints.Count;
         }
@@ -44,6 +43,7 @@ public class CoinSpawner : MonoBehaviour
         _activeCoin = _coinPool.GetCoin();
         _activeCoin.transform.position = _spawnPoints[randomIndex].position;
         _activeCoin.OnDisabled += CoinDisabled;
+        _lastSpawnIndex = randomIndex;
     }
 
     private void CoinDisabled()
@@ -53,24 +53,5 @@ public class CoinSpawner : MonoBehaviour
         _activeCoin = null;
 
         SpawnNewCoin();
-    }
-
-    private Transform FindClosestSpawnPointToPlayer()
-    {
-        Transform closestPointToPlayer = _spawnPoints[0];
-        float minSqrDistanceToPlayer = float.MaxValue;
-
-        foreach (Transform spawnPoint in _spawnPoints)
-        {
-            float sqrDistanceToPlayer = (spawnPoint.position - _player.transform.position).sqrMagnitude;
-
-            if (sqrDistanceToPlayer < minSqrDistanceToPlayer)
-            {
-                minSqrDistanceToPlayer = sqrDistanceToPlayer;
-                closestPointToPlayer = spawnPoint;
-            }
-        }
-
-        return closestPointToPlayer;
     }
 }
