@@ -6,7 +6,14 @@ public class Coin : DefaultCollectableResource
 {
     [SerializeField] private float _disableDelay = 2f;
 
-    public event Action Deactivated;
+    private WaitForSeconds _wait;
+
+    public event Action<Coin> Deactivated;
+
+    private void Awake()
+    {
+        _wait = new WaitForSeconds(_disableDelay);
+    }
 
     public override void Collect(ResourceCollector collector)
     {
@@ -14,17 +21,17 @@ public class Coin : DefaultCollectableResource
         Deactivate();
     }
 
-    override protected void Deactivate()
+    protected override void Deactivate()
     {
         base.Deactivate();
-        StartCoroutine(DeactivateInDelay(_disableDelay));
+        StartCoroutine(DeactivateInDelay());
     }
 
-    private IEnumerator DeactivateInDelay(float delay)
+    private IEnumerator DeactivateInDelay()
     {
-        yield return new WaitForSeconds(delay);
+        yield return _wait;
 
         gameObject.SetActive(false);
-        Deactivated?.Invoke();
+        Deactivated?.Invoke(this);
     }
 }

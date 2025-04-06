@@ -28,25 +28,15 @@ public class PatrolBehaviour : IMoveBehaviour
     {
         if (IsOutOfPatrolRange(creature))
         {
-            if (IsFacingToStartPatrolPoint(creature) == false)
-            {
-                return true;
-            }
+            return IsFacingToStartPatrolPoint(creature) == false;
         }
 
-        return _moveAviablilityChecker.IsAbleToMoveForward(_moveDirection) == false;
+        return _moveAviablilityChecker.IsAbleToMoveForward == false;
     }
 
     private void SwapMoveDirection()
     {
-        if (_moveDirection > 0)
-        {
-            _moveDirection = -1;
-        }
-        else
-        {
-            _moveDirection = 1;
-        }
+        _moveDirection = (_moveDirection > 0) ? -1 : 1;
     }
 
     private bool IsOutOfPatrolRange(Transform creature)

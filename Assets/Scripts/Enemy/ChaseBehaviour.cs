@@ -12,18 +12,9 @@ public class ChaseBehaviour : IMoveBehaviour
 
     public float GetMoveDirection(Transform creature)
     {
-        float moveDirection;
+        float moveDirection = Mathf.Sign(_target.position.x - creature.position.x);
 
-        if (_target.position.x - creature.position.x > 0)
-        {
-            moveDirection = 1;
-        }
-        else
-        {
-            moveDirection = -1;
-        }
-
-        if (_moveAviablilityChecker.IsAbleToMoveForward(moveDirection) == false)
+        if (_moveAviablilityChecker.IsAbleToMoveForward == false)
         {
             moveDirection = 0;
         }

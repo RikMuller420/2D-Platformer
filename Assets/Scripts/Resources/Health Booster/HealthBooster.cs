@@ -6,7 +6,14 @@ public class HealthBooster : DefaultCollectableResource
     [SerializeField] private float _healthRestoreAmount = 50f;
     [SerializeField] private float _destroyDelay = 2f;
 
+    private WaitForSeconds _wait;
+
     public float HealthRestoreAmount => _healthRestoreAmount;
+
+    private void Awake()
+    {
+        _wait = new WaitForSeconds(_destroyDelay);
+    }
 
     public override void Collect(ResourceCollector collector)
     {
@@ -17,12 +24,12 @@ public class HealthBooster : DefaultCollectableResource
     override protected void Deactivate()
     {
         base.Deactivate();
-        StartCoroutine(DestroyInDelay(_destroyDelay));
+        StartCoroutine(DestroyInDelay());
     }
 
-    private IEnumerator DestroyInDelay(float delay)
+    private IEnumerator DestroyInDelay()
     {
-        yield return new WaitForSeconds(delay);
+        yield return _wait;
 
         Destroy(gameObject);
     }

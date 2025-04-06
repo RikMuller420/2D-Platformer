@@ -342,7 +342,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313159815}
-  - component: {fileID: 313159814}
   - component: {fileID: 313159813}
   m_Layer: 0
   m_Name: Coin Spawner
@@ -363,26 +362,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72591997fc66cf4fa7fd3eb6592201f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 313159814}
+  _coinPrefab: {fileID: 4073311959523878481, guid: c05498485cd3d4244906b502c1a61653, type: 3}
   _spawnPoints:
   - {fileID: 949495039}
   - {fileID: 273992381}
   - {fileID: 2053319180}
   - {fileID: 990663615}
   - {fileID: 1008896193}
---- !u!114 &313159814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 313159812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052fbd4021acf2045ad77bc42a984694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coinPrefab: {fileID: 4073311959523878481, guid: c05498485cd3d4244906b502c1a61653, type: 3}
 --- !u!4 &313159815
 Transform:
   m_ObjectHideFlags: 0

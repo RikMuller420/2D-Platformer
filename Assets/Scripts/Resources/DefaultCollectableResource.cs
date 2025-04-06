@@ -17,7 +17,7 @@ public abstract class DefaultCollectableResource : MonoBehaviour, ICollectableRe
         gameObject.SetActive(true);
     }
 
-    virtual protected void Deactivate()
+    protected virtual void Deactivate()
     {
         Collider.enabled = false;
         _animator.SetTrigger(AnimatorDeactivateTriggerName);

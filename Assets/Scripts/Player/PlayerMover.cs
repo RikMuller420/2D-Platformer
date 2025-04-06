@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMover : CreatureMover
 {
-    [SerializeField] private GroundChecker _groundChecker;
+    [SerializeField] private LayerContactChecker _groundChecker;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _jumpForce = 12f;
 
