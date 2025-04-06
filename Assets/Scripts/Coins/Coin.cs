@@ -2,27 +2,21 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class Coin : MonoBehaviour
+public class Coin : DefaultCollectableResource
 {
-    private const string AnimatorDeactivateTriggerName = "Disappear";
-
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Collider2D _collider;
     [SerializeField] private float _disableDelay = 2f;
 
-    public event Action OnDisabled;
+    public event Action Deactivated;
 
-    public void Activate()
+    public override void Collect(ResourceCollector collector)
     {
-        _collider.enabled = true;
-        gameObject.SetActive(true);
+        collector.Collect(this);
+        Deactivate();
     }
 
-    public void Deactivate()
+    override protected void Deactivate()
     {
-        _collider.enabled = false;
-        _animator.SetTrigger(AnimatorDeactivateTriggerName);
+        base.Deactivate();
         StartCoroutine(DeactivateInDelay(_disableDelay));
     }
 
@@ -31,6 +25,6 @@ public class Coin : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         gameObject.SetActive(false);
-        OnDisabled?.Invoke();
+        Deactivated?.Invoke();
     }
 }

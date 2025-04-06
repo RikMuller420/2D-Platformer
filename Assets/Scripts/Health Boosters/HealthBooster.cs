@@ -1,32 +1,26 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class HealthBooster : MonoBehaviour
+public class HealthBooster : DefaultCollectableResource
 {
-    private const string AnimatorDeactivateTriggerName = "Disappear";
-
-    [SerializeField] private Animator _animator;
-    [SerializeField] private Collider2D _collider;
     [SerializeField] private float _healthRestoreAmount = 50f;
-    [SerializeField] private float _disableDelay = 2f;
+    [SerializeField] private float _destroyDelay = 2f;
 
     public float HealthRestoreAmount => _healthRestoreAmount;
 
-    public void Activate()
+    public override void Collect(ResourceCollector collector)
     {
-        _collider.enabled = true;
-        gameObject.SetActive(true);
+        collector.Collect(this);
+        Deactivate();
     }
 
-    public void Deactivate()
+    override protected void Deactivate()
     {
-        _collider.enabled = false;
-        _animator.SetTrigger(AnimatorDeactivateTriggerName);
-        StartCoroutine(DeactivateInDelay(_disableDelay));
+        base.Deactivate();
+        StartCoroutine(DestroyInDelay(_destroyDelay));
     }
 
-    private IEnumerator DeactivateInDelay(float delay)
+    private IEnumerator DestroyInDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 

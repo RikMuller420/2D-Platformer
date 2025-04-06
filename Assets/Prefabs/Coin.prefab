@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbd105b2454b9042b397ea20fab73f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 2509962026139198070}
   _animator: {fileID: 8509838606757562500}
-  _collider: {fileID: 2509962026139198070}
   _disableDelay: 2
 --- !u!1 &7515199000061417609
 GameObject:

@@ -2,22 +2,22 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(Attacker))]
-[RequireComponent(typeof(HealthBoosterCollector))]
+[RequireComponent(typeof(ResourceCollector))]
 public class Player : MortalCreature
 {
     [SerializeField] private InputHandler _inputHandler;
     [SerializeField] private PlayerMover _mover;
     [SerializeField] private Attacker _attacker;
-    [SerializeField] private HealthBoosterCollector _healthBoosterCollector;
+    [SerializeField] private ResourceCollector _resourceCollector;
 
     private void OnEnable()
     {
-        _healthBoosterCollector.OnHealthBoosterCollected += Heal;
+        _resourceCollector.HealthBoosterCollected += Heal;
     }
 
     private void OnDisable()
     {
-        _healthBoosterCollector.OnHealthBoosterCollected -= Heal;
+        _resourceCollector.HealthBoosterCollected -= Heal;
     }
 
     private void FixedUpdate()

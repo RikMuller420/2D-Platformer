@@ -14,7 +14,7 @@ public class CoinSpawner : MonoBehaviour
     {
         if (_activeCoin != null)
         {
-            _activeCoin.OnDisabled += CoinDisabled;
+            _activeCoin.Deactivated += CoinDisabled;
         }
     }
 
@@ -22,7 +22,7 @@ public class CoinSpawner : MonoBehaviour
     {
         if (_activeCoin != null)
         {
-            _activeCoin.OnDisabled -= CoinDisabled;
+            _activeCoin.Deactivated -= CoinDisabled;
         }
     }
 
@@ -42,13 +42,13 @@ public class CoinSpawner : MonoBehaviour
 
         _activeCoin = _coinPool.GetCoin();
         _activeCoin.transform.position = _spawnPoints[randomIndex].position;
-        _activeCoin.OnDisabled += CoinDisabled;
+        _activeCoin.Deactivated += CoinDisabled;
         _lastSpawnIndex = randomIndex;
     }
 
     private void CoinDisabled()
     {
-        _activeCoin.OnDisabled -= CoinDisabled;
+        _activeCoin.Deactivated -= CoinDisabled;
         _coinPool.ReleaseCoin(_activeCoin);
         _activeCoin = null;
 
