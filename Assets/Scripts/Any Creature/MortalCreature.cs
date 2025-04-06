@@ -1,18 +1,19 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class MortalCreature : MonoBehaviour, IDamagable
 {
-    [SerializeField] protected CreatureAnimator Animator;
-
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private CreatureAnimator _animator;
     [SerializeField] private float _maxHealth = 100f;
 
     private float _health;
 
     private void Awake()
     {
-        SetMaxHealth();
+        _health = _maxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -46,16 +47,11 @@ public abstract class MortalCreature : MonoBehaviour, IDamagable
         }
     }
 
-    protected void SetMaxHealth()
-    {
-        _health = _maxHealth;
-    }
-
     private void Death()
     {
         enabled = false;
         _collider.enabled = false;
         _rigidbody.simulated = false;
-        Animator.PlayDeadAnimation();
+        _animator.PlayDeadAnimation();
     }
 }

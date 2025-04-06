@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8435163646496895528}
   - component: {fileID: 5214304645153233652}
   m_Layer: 0
-  m_Name: Ground Checker
+  m_Name: Move Aviablilty Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 7619889695795629979}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26320004, y: -0.9000002, z: 0}
+  m_LocalPosition: {x: 0.26320004, y: -0.719, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -301,9 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b859d695cfa229948b845731cfd9c535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 141850269362331233}
   _collider: {fileID: 7844624468051901602}
   _rigidbody: {fileID: 7973514846068802305}
+  _animator: {fileID: 141850269362331233}
   _maxHealth: 100
   _mover: {fileID: 5387414109610025536}
   _attacker: {fileID: 8292132532302921521}
@@ -320,7 +320,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 7973514846068802305}
-  groundChecker: {fileID: 5214304645153233652}
+  Animator: {fileID: 141850269362331233}
+  _orientationChanger: {fileID: 5065727469834038169}
+  _moveAviablilityChecker: {fileID: 5214304645153233652}
   _detectorOfPlayerInSight: {fileID: 882620888322782449}
   _maxPatrolDistance: 5
   _patrolSpeed: 1.2
@@ -354,7 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5190dd8c90bac4885ac036a478b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creature: {fileID: 5387414109610025536}
 --- !u!1 &8871065502176899968
 GameObject:
   m_ObjectHideFlags: 0

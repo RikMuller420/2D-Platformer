@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IMoveBehaviour
 {
-    Direction GetMoveDirection(Transform creature);
+    float GetMoveDirection(Transform creature);
 }

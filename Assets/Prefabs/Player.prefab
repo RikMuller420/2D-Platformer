@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3014542767205501838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ab5effb73d5b494e9c514ae925f7c9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aeca0b8d88d6f14da933f752e8daf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _checkRadius: 0.2
@@ -300,9 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fc907bfcc8d744baae967b7fc3a817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 1410180728817807397}
   _collider: {fileID: 864911255553756888}
   _rigidbody: {fileID: 2817644964821940973}
+  _animator: {fileID: 1410180728817807397}
   _maxHealth: 100
   _inputHandler: {fileID: 0}
   _mover: {fileID: 3866908028706750014}
@@ -321,6 +321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 2817644964821940973}
+  Animator: {fileID: 1410180728817807397}
+  _orientationChanger: {fileID: 7678209190353567539}
   _groundChecker: {fileID: 7562146900274345133}
   _moveSpeed: 5
   _jumpForce: 12
@@ -353,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5190dd8c90bac4885ac036a478b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creature: {fileID: 3866908028706750014}
 --- !u!114 &6281358221999458456
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,20 @@ public class PlayerMover : CreatureMover
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _jumpForce = 12f;
 
-    public bool IsGrounded => _groundChecker.IsGrounded;
+    private PlayerAnimator _playerAnimator;
+
+    private void Awake()
+    {
+        _playerAnimator = Animator as PlayerAnimator;
+    }
 
     public void Move(float moveInput)
     {
         float velocityX = moveInput * _moveSpeed;
         MoveHorizontal(velocityX);
+
+        _playerAnimator.UpdateMoveAnimation(velocityX);
+        _playerAnimator.UpdateAnimatorGroundBool(_groundChecker.IsGrounded);
     }
 
     public void TryJump()

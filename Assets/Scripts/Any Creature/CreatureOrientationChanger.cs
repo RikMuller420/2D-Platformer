@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CreatureOrientationChanger : MonoBehaviour
 {
-    [SerializeField] private CreatureMover _creature;
-
     private bool _isFacingRight = true;
     private float _facingRightAngle = 0f;
     private float _facingLeftAngle = 180;
@@ -17,13 +15,13 @@ public class CreatureOrientationChanger : MonoBehaviour
         _facingRightRotation = Quaternion.Euler(0f, _facingRightAngle, 0f);
     }
 
-    private void FixedUpdate()
+    public void UpdateOrientation(float moveDirection)
     {
-        if (_creature.MoveDirection == Direction.Right && _isFacingRight == false)
+        if (moveDirection > 0 && _isFacingRight == false)
         {
             Flip();
         }
-        else if (_creature.MoveDirection == Direction.Left && _isFacingRight)
+        else if (moveDirection < 0 && _isFacingRight)
         {
             Flip();
         }

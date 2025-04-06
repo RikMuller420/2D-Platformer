@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMover : CreatureMover
 {
-    [SerializeField] private MoveAviablilityChecker groundChecker;
+    [SerializeField] private MoveAviablilityChecker _moveAviablilityChecker;
     [SerializeField] private DetectorOfPlayerInSight _detectorOfPlayerInSight;
     [SerializeField, Min(3f)] private float _maxPatrolDistance = 5f;
     [SerializeField, Min(0.5f)] private float _patrolSpeed = 1.2f;
@@ -11,21 +11,20 @@ public class EnemyMover : CreatureMover
     private PatrolBehaviour _patrolBehaviour;
     private ChaseBehaviour _chaseBehaviour;
     private IMoveBehaviour _moveBehaviour;
-
-    public float MoveSpeed { get; private set; }
+    private float _moveSpeed;
 
     private void Awake()
     {
-        _patrolBehaviour = new PatrolBehaviour(transform, groundChecker, _maxPatrolDistance);
-        _chaseBehaviour = new ChaseBehaviour(groundChecker);
+        _patrolBehaviour = new PatrolBehaviour(transform, _moveAviablilityChecker, _maxPatrolDistance);
+        _chaseBehaviour = new ChaseBehaviour(_moveAviablilityChecker);
     }
 
     public void Move()
     {
         UpdateMoveBehaviour();
-        Direction moveDirection = _moveBehaviour.GetMoveDirection(transform);
 
-        float velocityX = (int)moveDirection * MoveSpeed;
+        float moveDirection = _moveBehaviour.GetMoveDirection(transform);
+        float velocityX = moveDirection * _moveSpeed;
         MoveHorizontal(velocityX);
     }
 
@@ -35,12 +34,12 @@ public class EnemyMover : CreatureMover
         {
             _moveBehaviour = _chaseBehaviour;
             _chaseBehaviour.SetTargetToChase(player);
-            MoveSpeed = _chaseSpeed;
+            _moveSpeed = _chaseSpeed;
         }
         else
         {
             _moveBehaviour = _patrolBehaviour;
-            MoveSpeed = _patrolSpeed;
+            _moveSpeed = _patrolSpeed;
         }
     }
 }

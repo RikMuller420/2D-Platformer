@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PatrolBehaviour : IMoveBehaviour
 {
-    private MoveAviablilityChecker _groundChecker;
+    private MoveAviablilityChecker _moveAviablilityChecker;
     private float _maxPatrolDistance = 5f;
     private Vector2 _startPatrolPoint;
-    private Direction _moveDirection = Direction.Right;
+    private float _moveDirection = 1;
 
-    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker groundChecker, float maxPatrolDistance)
+    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker moveAviablilityChecker, float maxPatrolDistance)
     {
         _startPatrolPoint = startPoint.position;
-        _groundChecker = groundChecker;
+        _moveAviablilityChecker = moveAviablilityChecker;
         _maxPatrolDistance = maxPatrolDistance;
     }
 
-    public Direction GetMoveDirection(Transform creature)
+    public float GetMoveDirection(Transform creature)
     {
         if (IsDirectionSwapRequired(creature))
         {
@@ -34,18 +34,18 @@ public class PatrolBehaviour : IMoveBehaviour
             }
         }
 
-        return _groundChecker.IsAbleToMoveForward(_moveDirection) == false;
+        return _moveAviablilityChecker.IsAbleToMoveForward(_moveDirection) == false;
     }
 
     private void SwapMoveDirection()
     {
-        if (_moveDirection == Direction.Right)
+        if (_moveDirection > 0)
         {
-            _moveDirection = Direction.Left;
+            _moveDirection = -1;
         }
         else
         {
-            _moveDirection = Direction.Right;
+            _moveDirection = 1;
         }
     }
 
@@ -60,11 +60,11 @@ public class PatrolBehaviour : IMoveBehaviour
     {
         if (creature.position.x > _startPatrolPoint.x)
         {
-            return _moveDirection == Direction.Left;
+            return _moveDirection < 0;
         }
         else
         {
-            return _moveDirection == Direction.Right;
+            return _moveDirection > 0;
         }
     }
 }

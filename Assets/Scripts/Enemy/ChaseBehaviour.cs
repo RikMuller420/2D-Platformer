@@ -2,30 +2,30 @@ using UnityEngine;
 
 public class ChaseBehaviour : IMoveBehaviour
 {
-    private MoveAviablilityChecker _groundChecker;
+    private MoveAviablilityChecker _moveAviablilityChecker;
     private Transform _target;
 
-    public ChaseBehaviour(MoveAviablilityChecker groundChecker)
+    public ChaseBehaviour(MoveAviablilityChecker moveAviablilityChecker)
     {
-        _groundChecker = groundChecker;
+        _moveAviablilityChecker = moveAviablilityChecker;
     }
 
-    public Direction GetMoveDirection(Transform creature)
+    public float GetMoveDirection(Transform creature)
     {
-        Direction moveDirection;
+        float moveDirection;
 
         if (_target.position.x - creature.position.x > 0)
         {
-            moveDirection = Direction.Right;
+            moveDirection = 1;
         }
         else
         {
-            moveDirection = Direction.Left;
+            moveDirection = -1;
         }
 
-        if (_groundChecker.IsAbleToMoveForward(moveDirection) == false)
+        if (_moveAviablilityChecker.IsAbleToMoveForward(moveDirection) == false)
         {
-            moveDirection = Direction.None;
+            moveDirection = 0;
         }
 
         return moveDirection;

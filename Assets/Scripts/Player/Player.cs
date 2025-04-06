@@ -10,14 +10,6 @@ public class Player : MortalCreature
     [SerializeField] private Attacker _attacker;
     [SerializeField] private ResourceCollector _resourceCollector;
 
-    private PlayerAnimator _playerAnimator;
-
-    private void Awake()
-    {
-        SetMaxHealth();
-        _playerAnimator = (PlayerAnimator)Animator;
-    }
-
     private void OnEnable()
     {
         _resourceCollector.HealthBoosterCollected += Heal;
@@ -38,8 +30,5 @@ public class Player : MortalCreature
         }
 
         _attacker.TryAttack();
-
-        _playerAnimator.UpdateMoveAnimation(_inputHandler.HorizontalMove);
-        _playerAnimator.UpdateAnimatorGroundBool(_mover.IsGrounded);
     }
 }
