@@ -11,6 +11,7 @@ public class Enemy : MortalCreature
     {
         _mover.Move();
         _attacker.TryAttack();
-        Animator.UpdateMoveAnimation();
+
+        Animator.UpdateMoveAnimation(_mover.MoveSpeed);
     }
 }

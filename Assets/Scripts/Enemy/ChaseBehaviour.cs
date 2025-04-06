@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class ChaseBehaviour : MonoBehaviour
+public class ChaseBehaviour : IMoveBehaviour
 {
-    [SerializeField] private EnemyGroundChecker _groundChecker;
-
+    private MoveAviablilityChecker _groundChecker;
     private Transform _target;
 
-    public Direction GetDirection()
+    public ChaseBehaviour(MoveAviablilityChecker groundChecker)
+    {
+        _groundChecker = groundChecker;
+    }
+
+    public Direction GetMoveDirection(Transform creature)
     {
         Direction moveDirection;
 
-        if (_target.position.x - transform.position.x > 0)
+        if (_target.position.x - creature.position.x > 0)
         {
             moveDirection = Direction.Right;
         }

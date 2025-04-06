@@ -7,12 +7,11 @@ public class CreatureAnimator : MonoBehaviour
 
     [SerializeField] protected Animator Animator;
 
-    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _moveSpeedAnimationCorrection = 0.7f;
 
-    public void UpdateMoveAnimation()
+    public void UpdateMoveAnimation(float moveSpeed)
     {
-        float animatorSpeed = Mathf.Abs(_rigidbody.linearVelocityX) * _moveSpeedAnimationCorrection;
+        float animatorSpeed = Mathf.Abs(moveSpeed) * _moveSpeedAnimationCorrection;
         Animator.SetFloat(MoveSpeed, animatorSpeed);
     }
 

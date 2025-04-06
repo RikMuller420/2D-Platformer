@@ -470,6 +470,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 4878657935211296100}
-  _rigidbody: {fileID: 2817644964821940973}
-  _moveSpeedAnimationCorrection: 0.2
-  _playerGroundChecker: {fileID: 7562146900274345133}
+  _moveSpeedAnimationCorrection: 0.7

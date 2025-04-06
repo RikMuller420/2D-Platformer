@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class PlayerMover : CreatureMover
 {
-    [SerializeField] private PlayerGroundChecker _groundChecker;
+    [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _jumpForce = 12f;
+
+    public bool IsGrounded => _groundChecker.IsGrounded;
 
     public void Move(float moveInput)
     {

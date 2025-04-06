@@ -1,21 +1,22 @@
 using UnityEngine;
 
-public class PatrolBehaviour : MonoBehaviour
+public class PatrolBehaviour : IMoveBehaviour
 {
-    [SerializeField] private EnemyGroundChecker _groundChecker;
-    [SerializeField] private float _maxPatrolDistance = 5f;
-
+    private MoveAviablilityChecker _groundChecker;
+    private float _maxPatrolDistance = 5f;
     private Vector2 _startPatrolPoint;
     private Direction _moveDirection = Direction.Right;
 
-    private void Awake()
+    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker groundChecker, float maxPatrolDistance)
     {
-        _startPatrolPoint = transform.position;
+        _startPatrolPoint = startPoint.position;
+        _groundChecker = groundChecker;
+        _maxPatrolDistance = maxPatrolDistance;
     }
 
-    public Direction GetDirection()
+    public Direction GetMoveDirection(Transform creature)
     {
-        if (IsDirectionSwapRequired())
+        if (IsDirectionSwapRequired(creature))
         {
             SwapMoveDirection();
         }
@@ -23,11 +24,11 @@ public class PatrolBehaviour : MonoBehaviour
         return _moveDirection;
     }
 
-    private bool IsDirectionSwapRequired()
+    private bool IsDirectionSwapRequired(Transform creature)
     {
-        if (IsOutOfPatrolRange())
+        if (IsOutOfPatrolRange(creature))
         {
-            if (IsFacingToStartPatrolPoint() == false)
+            if (IsFacingToStartPatrolPoint(creature) == false)
             {
                 return true;
             }
@@ -48,16 +49,16 @@ public class PatrolBehaviour : MonoBehaviour
         }
     }
 
-    private bool IsOutOfPatrolRange()
+    private bool IsOutOfPatrolRange(Transform creature)
     {
         float sqrMaxPatrolDistance = _maxPatrolDistance * _maxPatrolDistance;
 
-        return ((Vector2)transform.position - _startPatrolPoint).sqrMagnitude > sqrMaxPatrolDistance;
+        return ((Vector2)creature.position - _startPatrolPoint).sqrMagnitude > sqrMaxPatrolDistance;
     }
 
-    private bool IsFacingToStartPatrolPoint()
+    private bool IsFacingToStartPatrolPoint(Transform creature)
     {
-        if (transform.position.x > _startPatrolPoint.x)
+        if (creature.position.x > _startPatrolPoint.x)
         {
             return _moveDirection == Direction.Left;
         }

@@ -12,7 +12,7 @@ public abstract class MortalCreature : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        _health = _maxHealth;
+        SetMaxHealth();
     }
 
     public void TakeDamage(float damage)
@@ -33,12 +33,22 @@ public abstract class MortalCreature : MonoBehaviour, IDamagable
 
     public void Heal(float health)
     {
+        if (health < 0)
+        {
+            health = 0;
+        }
+
         _health += health;
 
         if (_health > _maxHealth)
         {
             _health = _maxHealth;
         }
+    }
+
+    protected void SetMaxHealth()
+    {
+        _health = _maxHealth;
     }
 
     private void Death()
