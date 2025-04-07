@@ -4,44 +4,44 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class LayerContactChecker : MonoBehaviour
 {
-    [SerializeField] private LayerMask _groundLayer;
-    private int _groundContacts = 0;
+    [SerializeField] private LayerMask _layer;
+    private int _contacts = 0;
 
-    public event Action GroundedStateChanged;
+    public event Action ConcatStateChanged;
 
-    public bool IsGrounded { get; private set; }
+    public bool IsConcatWithLayer { get; private set; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & _groundLayer) != 0)
+        if (((1 << collision.gameObject.layer) & _layer) != 0)
         {
-            _groundContacts++;
-            SetNewGroundState(true);
+            _contacts++;
+            SetConcatState(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & _groundLayer) != 0)
+        if (((1 << collision.gameObject.layer) & _layer) != 0)
         {
-            _groundContacts--;
+            _contacts--;
 
-            if (_groundContacts <= 0)
+            if (_contacts <= 0)
             {
-                _groundContacts = 0;
-                SetNewGroundState(false);
+                _contacts = 0;
+                SetConcatState(false);
             }
         }
     }
 
-    private void SetNewGroundState(bool isGrounded)
+    private void SetConcatState(bool isGrounded)
     {
-        bool isGroundedBuffer = IsGrounded;
-        IsGrounded = isGrounded;
+        bool isConcatBuffer = IsConcatWithLayer;
+        IsConcatWithLayer = isGrounded;
 
-        if (IsGrounded != isGroundedBuffer)
+        if (IsConcatWithLayer != isConcatBuffer)
         {
-            GroundedStateChanged?.Invoke();
+            ConcatStateChanged?.Invoke();
         }
     }
 }

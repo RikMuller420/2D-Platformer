@@ -19,12 +19,12 @@ public class PlayerMover : CreatureMover
         MoveHorizontal(velocityX);
 
         _playerAnimator.UpdateMoveAnimation(velocityX);
-        _playerAnimator.UpdateAnimatorGroundBool(_groundChecker.IsGrounded);
+        _playerAnimator.UpdateAnimatorGroundBool(_groundChecker.IsConcatWithLayer);
     }
 
     public void TryJump()
     {
-        if (_groundChecker.IsGrounded)
+        if (_groundChecker.IsConcatWithLayer)
         {
             Rigidbody.linearVelocityY = _jumpForce;
         }

@@ -9,19 +9,19 @@ public class MoveAviablilityChecker : MonoBehaviour
 
     private void OnEnable()
     {
-        _groundChecker.GroundedStateChanged += UpdateMoveAviablility;
-        _wallChecker.GroundedStateChanged += UpdateMoveAviablility;
+        _groundChecker.ConcatStateChanged += UpdateMoveAviablility;
+        _wallChecker.ConcatStateChanged += UpdateMoveAviablility;
     }
 
     private void OnDisable()
     {
-        _groundChecker.GroundedStateChanged -= UpdateMoveAviablility;
-        _wallChecker.GroundedStateChanged -= UpdateMoveAviablility;
+        _groundChecker.ConcatStateChanged -= UpdateMoveAviablility;
+        _wallChecker.ConcatStateChanged -= UpdateMoveAviablility;
 
     }
 
     private void UpdateMoveAviablility()
     {
-        IsAbleToMoveForward = _groundChecker.IsGrounded && (_wallChecker.IsGrounded == false);
+        IsAbleToMoveForward = _groundChecker.IsConcatWithLayer && (_wallChecker.IsConcatWithLayer == false);
     }
 }
