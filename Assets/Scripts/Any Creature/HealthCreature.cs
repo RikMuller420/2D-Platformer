@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class MortalCreature : MonoBehaviour, IDamagable
+public abstract class HealthCreature : MonoBehaviour, IDamagable
 {
     [SerializeField] private Collider2D _collider;
     [SerializeField] private Rigidbody2D _rigidbody;

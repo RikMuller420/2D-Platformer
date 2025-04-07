@@ -9,8 +9,10 @@ public abstract class DefaultCollectableResource : MonoBehaviour, ICollectableRe
 
     [SerializeField] private Animator _animator;
 
-    public abstract void Collect(ResourceCollector collector);
-
+    public void Collect()
+    {
+        Deactivate();
+    }
     public void Activate()
     {
         Collider.enabled = true;

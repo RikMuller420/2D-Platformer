@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
@@ -5,7 +6,7 @@ public class InputHandler : MonoBehaviour
     private const string HorizontalAxisName = "Horizontal";
     private const KeyCode JumpKeyCode = KeyCode.Space;
 
-    private bool _isJump;
+    public event Action JumpPressed;
 
     public float HorizontalMove { get; private set; }
 
@@ -15,15 +16,7 @@ public class InputHandler : MonoBehaviour
 
         if (Input.GetKeyDown(JumpKeyCode))
         {
-            _isJump = true;
+            JumpPressed?.Invoke();
         }
-    }
-
-    public bool GetIsJumpTrigger()
-    {
-        bool bufferIsJump = _isJump;
-        _isJump = false;
-
-        return bufferIsJump;
     }
 }

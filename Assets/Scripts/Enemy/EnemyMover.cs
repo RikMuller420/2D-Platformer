@@ -11,21 +11,17 @@ public class EnemyMover : CreatureMover
     private PatrolBehaviour _patrolBehaviour;
     private ChaseBehaviour _chaseBehaviour;
     private IMoveBehaviour _moveBehaviour;
-    private float _moveSpeed;
 
     private void Awake()
     {
-        _patrolBehaviour = new PatrolBehaviour(transform, _moveAviablilityChecker, _maxPatrolDistance);
-        _chaseBehaviour = new ChaseBehaviour(_moveAviablilityChecker);
+        _patrolBehaviour = new PatrolBehaviour(transform, _moveAviablilityChecker, _maxPatrolDistance, _patrolSpeed);
+        _chaseBehaviour = new ChaseBehaviour(_moveAviablilityChecker, _chaseSpeed);
     }
 
     public void Move()
     {
         UpdateMoveBehaviour();
-
-        float moveDirection = _moveBehaviour.GetMoveDirection(transform);
-        float velocityX = moveDirection * _moveSpeed;
-        MoveHorizontal(velocityX);
+        _moveBehaviour.Move(this);
     }
 
     private void UpdateMoveBehaviour()
@@ -34,12 +30,10 @@ public class EnemyMover : CreatureMover
         {
             _moveBehaviour = _chaseBehaviour;
             _chaseBehaviour.SetTargetToChase(player);
-            _moveSpeed = _chaseSpeed;
         }
         else
         {
             _moveBehaviour = _patrolBehaviour;
-            _moveSpeed = _patrolSpeed;
         }
     }
 }

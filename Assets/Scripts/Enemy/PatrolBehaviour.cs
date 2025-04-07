@@ -6,22 +6,26 @@ public class PatrolBehaviour : IMoveBehaviour
     private float _maxPatrolDistance = 5f;
     private Vector2 _startPatrolPoint;
     private float _moveDirection = 1;
+    private float _patrolSpeed = 1.2f;
 
-    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker moveAviablilityChecker, float maxPatrolDistance)
+    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker moveAviablilityChecker,
+                            float maxPatrolDistance, float patrolSpeed)
     {
         _startPatrolPoint = startPoint.position;
         _moveAviablilityChecker = moveAviablilityChecker;
         _maxPatrolDistance = maxPatrolDistance;
+        _patrolSpeed = patrolSpeed;
     }
 
-    public float GetMoveDirection(Transform creature)
+    public void Move(CreatureMover creature)
     {
-        if (IsDirectionSwapRequired(creature))
+        if (IsDirectionSwapRequired(creature.transform))
         {
             SwapMoveDirection();
         }
 
-        return _moveDirection;
+        float velocityX = _moveDirection * _patrolSpeed;
+        creature.MoveHorizontal(velocityX);
     }
 
     private bool IsDirectionSwapRequired(Transform creature)

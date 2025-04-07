@@ -15,12 +15,6 @@ public class HealthBooster : DefaultCollectableResource
         _wait = new WaitForSeconds(_destroyDelay);
     }
 
-    public override void Collect(ResourceCollector collector)
-    {
-        collector.Collect(this);
-        Deactivate();
-    }
-
     override protected void Deactivate()
     {
         base.Deactivate();

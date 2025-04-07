@@ -15,12 +15,6 @@ public class Coin : DefaultCollectableResource
         _wait = new WaitForSeconds(_disableDelay);
     }
 
-    public override void Collect(ResourceCollector collector)
-    {
-        collector.Collect(this);
-        Deactivate();
-    }
-
     protected override void Deactivate()
     {
         base.Deactivate();

@@ -11,16 +11,27 @@ public class ResourceCollector : MonoBehaviour
     {
         if (collision.TryGetComponent(out ICollectableResource resource))
         {
-            resource.Collect(this);
+            Collect(resource);
         }
     }
 
-    public void Collect(Coin coin)
+    private void Collect(ICollectableResource resource)
     {
-        CoinCollected?.Invoke();
+        resource.Collect();
+
+        switch (resource)
+        {
+            case Coin:
+                CoinCollected?.Invoke();
+                break;
+
+            case HealthBooster:
+                Collect(resource as HealthBooster);
+                break;
+        }
     }
 
-    public void Collect(HealthBooster healthBooster)
+    private void Collect(HealthBooster healthBooster)
     {
         HealthBoosterCollected?.Invoke(healthBooster.HealthRestoreAmount);
     }

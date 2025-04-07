@@ -43,7 +43,8 @@ public class Attacker : MonoBehaviour
         yield return new WaitForSeconds(_attackDelay);
 
         DealDamage();
-        StartCoroutine(SetReadyToAttackInDelay());
+
+        yield return SetReadyToAttackInDelay();
     }
 
     private void DealDamage()
