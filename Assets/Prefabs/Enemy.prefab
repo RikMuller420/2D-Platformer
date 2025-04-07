@@ -533,8 +533,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7968112673963552352}
   - component: {fileID: 882620888322782449}
+  - component: {fileID: 4660539014326549574}
   m_Layer: 0
-  m_Name: Patrol Player Detector
+  m_Name: Detector Of Player In Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,13 +549,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8871065502176899968}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.18200016, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4087951477152846053}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &882620888322782449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,10 +568,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aeb6a14ee0fdf5468102943f61e1db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectLayer:
+  _layer:
     serializedVersion: 2
     m_Bits: 128
   _detectDistance: 10
+--- !u!60 &4660539014326549574
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871065502176899968}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.40023568, y: 0.6438069}
+      - {x: 0.10380143, y: 0.2208294}
+      - {x: 0.14740044, y: -0.37237072}
+      - {x: 9.068409, y: -0.62504697}
+      - {x: 9.299402, y: 0.10355294}
+      - {x: 8.945913, y: 0.7835024}
+  m_UseDelaunayMesh: 0
 --- !u!1001 &3650031494009400285
 PrefabInstance:
   m_ObjectHideFlags: 0

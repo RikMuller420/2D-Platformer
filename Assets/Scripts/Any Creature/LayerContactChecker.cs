@@ -5,7 +5,8 @@ using UnityEngine;
 public class LayerContactChecker : MonoBehaviour
 {
     [SerializeField] private LayerMask _layer;
-    private int _contacts = 0;
+
+    private int _layerContacts = 0;
 
     public event Action ConcatStateChanged;
 
@@ -15,7 +16,7 @@ public class LayerContactChecker : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & _layer) != 0)
         {
-            _contacts++;
+            _layerContacts++;
             SetConcatState(true);
         }
     }
@@ -24,20 +25,20 @@ public class LayerContactChecker : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & _layer) != 0)
         {
-            _contacts--;
+            _layerContacts--;
 
-            if (_contacts <= 0)
+            if (_layerContacts <= 0)
             {
-                _contacts = 0;
+                _layerContacts = 0;
                 SetConcatState(false);
             }
         }
     }
 
-    private void SetConcatState(bool isGrounded)
+    private void SetConcatState(bool isConcat)
     {
         bool isConcatBuffer = IsConcatWithLayer;
-        IsConcatWithLayer = isGrounded;
+        IsConcatWithLayer = isConcat;
 
         if (IsConcatWithLayer != isConcatBuffer)
         {
