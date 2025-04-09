@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _maxValue = 100f;
 
     public event Action HealthExpired;
 
-    private float _health;
+    private float _value;
 
     private void Awake()
     {
-        _health = _maxHealth;
+        _value = _maxValue;
     }
 
     public void TakeDamage(float damage)
@@ -22,10 +22,10 @@ public class Health : MonoBehaviour, IDamagable
         }
 
 
-        _health -= damage;
-        _health = Math.Clamp(_health, 0, _maxHealth);
+        _value -= damage;
+        _value = Math.Clamp(_value, 0, _maxValue);
 
-        if (_health == 0)
+        if (_value == 0)
         {
             HealthExpired?.Invoke();
         }
@@ -38,7 +38,7 @@ public class Health : MonoBehaviour, IDamagable
             health = 0;
         }
 
-        _health += health;
-        _health = Math.Clamp(_health, 0, _maxHealth);
+        _value += health;
+        _value = Math.Clamp(_value, 0, _maxValue);
     }
 }
