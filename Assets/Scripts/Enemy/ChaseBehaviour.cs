@@ -1,28 +1,27 @@
 using UnityEngine;
 
-public class ChaseBehaviour : IMoveBehaviour
+public class ChaseBehaviour : MoveBehaviour
 {
     private MoveAviablilityChecker _moveAviablilityChecker;
     private Transform _target;
-    private float _chaseSpeed;
 
-    public ChaseBehaviour(MoveAviablilityChecker moveAviablilityChecker, float chaseSpeed)
+    public ChaseBehaviour(CreatureMover mover, MoveAviablilityChecker moveAviablilityChecker,
+                            float chaseSpeed) : base(mover, chaseSpeed)
     {
         _moveAviablilityChecker = moveAviablilityChecker;
-        _chaseSpeed = chaseSpeed;
     }
 
-    public void Move(CreatureMover creature)
+    public override void Move()
     {
-        float moveDirection = Mathf.Sign(_target.position.x - creature.transform.position.x);
+        float moveDirection = Mathf.Sign(_target.position.x - Mover.Creature.position.x);
 
         if (_moveAviablilityChecker.IsAbleToMoveForward == false)
         {
             moveDirection = 0;
         }
 
-        float velocityX = moveDirection * _chaseSpeed;
-        creature.MoveHorizontal(velocityX);
+        float velocityX = moveDirection * Speed;
+        Mover.MoveHorizontal(velocityX);
     }
 
     public void SetTargetToChase(Transform target)

@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class PlayerMover : CreatureMover
 {
-    [SerializeField] private LayerContactChecker _groundChecker;
-    [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private float _jumpForce = 12f;
-
     private PlayerAnimator _playerAnimator;
+    private LayerContactChecker _groundChecker;
+    private float _moveSpeed = 5f;
+    private float _jumpForce = 12f;
 
-    private void Awake()
+    public PlayerMover(Rigidbody2D rigidbody, PlayerAnimator animator,
+                        CreatureOrientationChanger orientationChanger,
+                        LayerContactChecker groundChecker, float moveSpeed, float jumpForce) :
+                        base(rigidbody, animator, orientationChanger)
     {
-        _playerAnimator = Animator as PlayerAnimator;
+        _groundChecker = groundChecker;
+        _moveSpeed = moveSpeed;
+        _jumpForce = jumpForce;
+        _playerAnimator = animator;
     }
 
     public void Move(float moveInput)

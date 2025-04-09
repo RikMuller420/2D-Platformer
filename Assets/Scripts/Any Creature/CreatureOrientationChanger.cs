@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class CreatureOrientationChanger : MonoBehaviour
+public class CreatureOrientationChanger
 {
+    private Transform _creature;
     private bool _isFacingRight = true;
     private float _facingRightAngle = 0f;
     private float _facingLeftAngle = 180;
@@ -9,8 +10,9 @@ public class CreatureOrientationChanger : MonoBehaviour
     private Quaternion _facingLeftRotation;
     private Quaternion _facingRightRotation;
 
-    private void Awake()
+    public CreatureOrientationChanger(Transform creature)
     {
+        _creature = creature;
         _facingLeftRotation = Quaternion.Euler(0f, _facingLeftAngle, 0f);
         _facingRightRotation = Quaternion.Euler(0f, _facingRightAngle, 0f);
     }
@@ -30,6 +32,6 @@ public class CreatureOrientationChanger : MonoBehaviour
     private void Flip()
     {
         _isFacingRight = !_isFacingRight;
-        transform.rotation = _isFacingRight ? _facingRightRotation : _facingLeftRotation;
+        _creature.rotation = _isFacingRight ? _facingRightRotation : _facingLeftRotation;
     }
 }

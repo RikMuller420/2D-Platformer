@@ -7,24 +7,37 @@ public class Attacker : MonoBehaviour
 {
     private readonly int Attack = Animator.StringToHash(nameof(Attack));
 
-    [SerializeField] private DetectorOfDamagableTarget _targetDetector;
+    [SerializeField] private LayerMask _attackLayer;
+    [SerializeField] private Collider2D _damageArea;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _attackDistance = 1.5f;
     [SerializeField] private float _damage = 10;
     [SerializeField] private float _attackDelay = 0.25f;
     [SerializeField] private float _reloadDuration = 1f;
 
-    private bool isReloading = false;
+    private DetectorOfDamagableTarget _targetDetector;
+    private bool _isReloading = false;
+    private WaitForSeconds _waitAttackDelay;
+    private WaitForSeconds _waitCooldown;
 
     public event Action OnAttackStarted;
 
-    public void TryAttack()
+    private void Awake()
     {
-        if (isReloading)
+        _targetDetector = new DetectorOfDamagableTarget(transform, _attackLayer,
+                                                    _attackDistance, _damageArea);
+        _waitAttackDelay = new WaitForSeconds(_attackDelay);
+        _waitCooldown = new WaitForSeconds(_reloadDuration);
+    }
+
+    public void TryAttack(Transform target)
+    {
+        if (_isReloading)
         {
             return;
         }
 
-        if (_targetDetector.IsDamagableInRange())
+        if (_targetDetector.IsTargetInRange(target))
         {
             AttackTarget();
         }
@@ -32,7 +45,7 @@ public class Attacker : MonoBehaviour
 
     private void AttackTarget()
     {
-        isReloading = true;
+        _isReloading = true;
         _animator.SetTrigger(Attack);
         OnAttackStarted?.Invoke();
         StartCoroutine(DealDamageInDelay());
@@ -40,11 +53,11 @@ public class Attacker : MonoBehaviour
 
     private IEnumerator DealDamageInDelay()
     {
-        yield return new WaitForSeconds(_attackDelay);
+        yield return _waitAttackDelay;
 
         DealDamage();
 
-        yield return SetReadyToAttackInDelay();
+        yield return Reload();
     }
 
     private void DealDamage()
@@ -57,10 +70,10 @@ public class Attacker : MonoBehaviour
         }
     }
 
-    private IEnumerator SetReadyToAttackInDelay()
+    private IEnumerator Reload()
     {
-        yield return new WaitForSeconds(_reloadDuration);
+        yield return _waitCooldown;
 
-        isReloading = false;
+        _isReloading = false;
     }
 }

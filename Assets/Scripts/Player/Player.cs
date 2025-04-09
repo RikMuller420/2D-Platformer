@@ -1,26 +1,39 @@
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(Attacker))]
-[RequireComponent(typeof(ResourceCollector))]
-public class Player : HealthCreature
+public class Player : Creature
 {
     [SerializeField] private InputHandler _inputHandler;
-    [SerializeField] private PlayerMover _mover;
     [SerializeField] private Attacker _attacker;
     [SerializeField] private ResourceCollector _resourceCollector;
+    [SerializeField] private DetectorOfOpponentInSight _enemyDetector;
+    [SerializeField] private LayerContactChecker _groundChecker;
+    [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _jumpForce = 12f;
 
+    private PlayerMover _mover;
     private bool _isJumpPressed;
 
-    private void OnEnable()
+    private void Awake()
     {
-        _resourceCollector.HealthBoosterCollected += Heal;
+        CreatureOrientationChanger orientationChanger = new CreatureOrientationChanger(transform);
+        PlayerAnimator animator = Animator as PlayerAnimator;
+
+        _mover = new PlayerMover(Rigidbody, animator, orientationChanger,
+                                _groundChecker, _moveSpeed, _jumpForce);
+    }
+
+    private new void OnEnable()
+    {
+        base.OnEnable();
+        _resourceCollector.HealthBoosterCollected += Health.Heal;
         _inputHandler.JumpPressed += RegisterJumpPressed;
     }
 
-    private void OnDisable()
+    private new void OnDisable()
     {
-        _resourceCollector.HealthBoosterCollected -= Heal;
+        base.OnDisable();
+        _resourceCollector.HealthBoosterCollected -= Health.Heal;
         _inputHandler.JumpPressed -= RegisterJumpPressed;
     }
 
@@ -31,10 +44,13 @@ public class Player : HealthCreature
         if (_isJumpPressed)
         {
             _mover.TryJump();
+            _isJumpPressed = false;
         }
 
-        _attacker.TryAttack();
-        _isJumpPressed = false;
+        if (_enemyDetector.IsOpponentInSight(out Transform enemy))
+        {
+            _attacker.TryAttack(enemy);
+        }
     }
 
     private void RegisterJumpPressed()

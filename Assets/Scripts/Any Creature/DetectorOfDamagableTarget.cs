@@ -1,38 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectorOfDamagableTarget : MonoBehaviour
+public class DetectorOfDamagableTarget
 {
-    [SerializeField] private LayerMask _detectLayer;
-    [SerializeField] private float _detectDistance = 1.5f;
-    [SerializeField] private Collider2D _damageArea;
+    private const int MaxHitTargets = 8;
 
-    public bool IsDamagableInRange()
+    private Transform _creature;
+    private LayerMask _detectLayer;
+    private float _detectDistance = 1.5f;
+    private Collider2D _damageArea;
+
+    private Collider2D[] _hitBuffer = new Collider2D[MaxHitTargets];
+
+    public DetectorOfDamagableTarget(Transform creature, LayerMask detectLayer,
+                                        float detectDistance, Collider2D damageArea)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward,
-                                            _detectDistance, _detectLayer);
+        _creature = creature;
+        _detectLayer = detectLayer;
+        _detectDistance = detectDistance;
+        _damageArea = damageArea;
+    }
 
-        if (hit.collider != null && hit.collider.TryGetComponent<IDamagable>(out _))
-        {
-            return true;
-        }
+    public bool IsTargetInRange(Transform target)
+    {
+        float distanceToTarget = Mathf.Abs(target.position.x - _creature.position.x);
 
-        return false;
+        return distanceToTarget <= _detectDistance;
     }
 
     public List<IDamagable> GetDamagablesInAttackArea()
     {
-        Collider2D[] hits = Physics2D.OverlapAreaAll(
+        int hitCount = Physics2D.OverlapAreaNonAlloc(
             _damageArea.bounds.min,
             _damageArea.bounds.max,
+            _hitBuffer,
             _detectLayer
         );
 
         List<IDamagable> damagables = new List<IDamagable>();
 
-        foreach (Collider2D hit in hits)
+        for (int i = 0; i < hitCount; i++)
         {
-            if (hit.TryGetComponent(out IDamagable damagable))
+            if (_hitBuffer[i].TryGetComponent(out IDamagable damagable))
             {
                 damagables.Add(damagable);
             }

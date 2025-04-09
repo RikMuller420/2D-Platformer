@@ -1,31 +1,30 @@
 using UnityEngine;
 
-public class PatrolBehaviour : IMoveBehaviour
+public class PatrolBehaviour : MoveBehaviour
 {
     private MoveAviablilityChecker _moveAviablilityChecker;
     private float _maxPatrolDistance = 5f;
     private Vector2 _startPatrolPoint;
     private float _moveDirection = 1;
-    private float _patrolSpeed = 1.2f;
 
-    public PatrolBehaviour(Transform startPoint, MoveAviablilityChecker moveAviablilityChecker,
-                            float maxPatrolDistance, float patrolSpeed)
+    public PatrolBehaviour(CreatureMover mover, MoveAviablilityChecker moveAviablilityChecker,
+                            float maxPatrolDistance, float patrolSpeed) :
+                            base(mover, patrolSpeed)
     {
-        _startPatrolPoint = startPoint.position;
+        _startPatrolPoint = mover.Creature.position;
         _moveAviablilityChecker = moveAviablilityChecker;
         _maxPatrolDistance = maxPatrolDistance;
-        _patrolSpeed = patrolSpeed;
     }
 
-    public void Move(CreatureMover creature)
+    public override void Move()
     {
-        if (IsDirectionSwapRequired(creature.transform))
+        if (IsDirectionSwapRequired(Mover.Creature))
         {
             SwapMoveDirection();
         }
 
-        float velocityX = _moveDirection * _patrolSpeed;
-        creature.MoveHorizontal(velocityX);
+        float velocityX = _moveDirection * Speed;
+        Mover.MoveHorizontal(velocityX);
     }
 
     private bool IsDirectionSwapRequired(Transform creature)

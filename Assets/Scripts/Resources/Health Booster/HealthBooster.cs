@@ -15,7 +15,7 @@ public class HealthBooster : DefaultCollectableResource
         _wait = new WaitForSeconds(_destroyDelay);
     }
 
-    override protected void Deactivate()
+    protected override void Deactivate()
     {
         base.Deactivate();
         StartCoroutine(DestroyInDelay());

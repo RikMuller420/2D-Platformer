@@ -1,18 +1,27 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CreatureOrientationChanger))]
-public abstract class CreatureMover : MonoBehaviour
+public class CreatureMover
 {
-    [SerializeField] protected Rigidbody2D Rigidbody;
-    [SerializeField] protected CreatureAnimator Animator;
+    protected Rigidbody2D Rigidbody;
 
-    [SerializeField] private CreatureOrientationChanger _orientationChanger;
+    private CreatureAnimator _animator;
+    private CreatureOrientationChanger _orientationChanger;
+
+    public CreatureMover(Rigidbody2D rigidbody, CreatureAnimator animator,
+                         CreatureOrientationChanger orientationChanger)
+    {
+        Rigidbody = rigidbody;
+        Creature = rigidbody.transform;
+        _animator = animator;
+        _orientationChanger = orientationChanger;
+    }
+
+    public Transform Creature { get; }
 
     public void MoveHorizontal(float velocityX)
     {
         Rigidbody.linearVelocityX = velocityX;
-        Animator.UpdateMoveAnimation(velocityX);
+        _animator.UpdateMoveAnimation(velocityX);
         _orientationChanger.UpdateOrientation(velocityX);
     }
 }
