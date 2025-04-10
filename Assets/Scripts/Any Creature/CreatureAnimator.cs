@@ -3,6 +3,7 @@ using UnityEngine;
 public class CreatureAnimator : MonoBehaviour
 {
     private readonly int MoveSpeed = Animator.StringToHash(nameof(MoveSpeed));
+    private readonly int Attack = Animator.StringToHash(nameof(Attack));
     private readonly int Death = Animator.StringToHash(nameof(Death));
 
     [SerializeField] protected Animator Animator;

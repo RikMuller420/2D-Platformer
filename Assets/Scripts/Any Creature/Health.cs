@@ -5,13 +5,15 @@ public class Health : MonoBehaviour, IDamagable
 {
     [SerializeField] private float _maxValue = 100f;
 
+    public event Action Changed;
     public event Action HealthExpired;
 
-    private float _value;
+    public float Value { get; private set; }
+    public float MaxValue => _maxValue;
 
     private void Awake()
     {
-        _value = _maxValue;
+        Value = _maxValue;
     }
 
     public void TakeDamage(float damage)
@@ -21,11 +23,12 @@ public class Health : MonoBehaviour, IDamagable
             damage = 0;
         }
 
+        Value -= damage;
+        Value = Math.Clamp(Value, 0, _maxValue);
 
-        _value -= damage;
-        _value = Math.Clamp(_value, 0, _maxValue);
+        Changed?.Invoke();
 
-        if (_value == 0)
+        if (Value == 0)
         {
             HealthExpired?.Invoke();
         }
@@ -38,7 +41,9 @@ public class Health : MonoBehaviour, IDamagable
             health = 0;
         }
 
-        _value += health;
-        _value = Math.Clamp(_value, 0, _maxValue);
+        Value += health;
+        Value = Math.Clamp(Value, 0, _maxValue);
+
+        Changed?.Invoke();
     }
 }
