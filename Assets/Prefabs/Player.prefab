@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2933269813363606667}
   - component: {fileID: 3447962090240177310}
   - component: {fileID: 4897825661219051733}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Resource Collector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2807074249898325965}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Facing Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,6 +424,7 @@ Transform:
   - {fileID: 2807074249898325965}
   - {fileID: 8824712368255492194}
   - {fileID: 2933269813363606667}
+  - {fileID: 7702437417179241548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7338590847768534992
@@ -654,6 +655,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 4878657935211296100}
   _moveSpeedAnimationCorrection: 0.7
+--- !u!1001 &7377917655406682667
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6423673637567861936}
+    m_Modifications:
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235065223509243192, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: _spellOwner
+      value: 
+      objectReference: {fileID: 6190143617985544991}
+    - target: {fileID: 6235065223509243192, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: _inputHandler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252768316414022986, guid: e046ef07e47250540aecdba705183f70, type: 3}
+      propertyPath: m_Name
+      value: Vampirirsm Spell
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e046ef07e47250540aecdba705183f70, type: 3}
+--- !u!4 &7702437417179241548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 902741931706842727, guid: e046ef07e47250540aecdba705183f70, type: 3}
+  m_PrefabInstance: {fileID: 7377917655406682667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8786821127882431114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -745,6 +816,10 @@ PrefabInstance:
     - target: {fileID: 794562534284472871, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
       propertyPath: m_Name
       value: Creature Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 794562534284472871, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2249029748839705263, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
       propertyPath: m_AnchorMax.x
