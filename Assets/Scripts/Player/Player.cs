@@ -14,12 +14,11 @@ public class Player : Creature
     private PlayerMover _mover;
     private bool _isJumpPressed;
 
-    private void Awake()
+    private new void Awake()
     {
-        CreatureOrientationChanger orientationChanger = new CreatureOrientationChanger(transform);
+        base.Awake();
         PlayerAnimator animator = Animator as PlayerAnimator;
-
-        _mover = new PlayerMover(Rigidbody, animator, orientationChanger,
+        _mover = new PlayerMover(Rigidbody, animator, OrientationChanger,
                                 _groundChecker, _moveSpeed, _jumpForce);
     }
 

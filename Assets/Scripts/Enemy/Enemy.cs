@@ -19,10 +19,10 @@ public class Enemy : Creature
     private Transform _player;
     private bool _isPlayerInSight = false;
 
-    private void Awake()
+    private new void Awake()
     {
-        CreatureOrientationChanger orientationChanger = new CreatureOrientationChanger(transform);
-        _mover = new CreatureMover(Rigidbody, Animator, orientationChanger);
+        base.Awake();
+        _mover = new CreatureMover(Rigidbody, Animator, OrientationChanger);
         _patrolBehaviour = new PatrolBehaviour(_mover, _moveAviablilityChecker, _maxPatrolDistance, _patrolSpeed);
         _chaseBehaviour = new ChaseBehaviour(_mover, _moveAviablilityChecker, _chaseSpeed);
     }
