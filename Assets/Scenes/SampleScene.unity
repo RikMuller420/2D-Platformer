@@ -1889,6 +1889,10 @@ PrefabInstance:
       propertyPath: _inputHandler
       value: 
       objectReference: {fileID: 165303999}
+    - target: {fileID: 3296618456107473568, guid: 9f32ad2b50153984daf63a07e186827e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3866908028706750014, guid: 9f32ad2b50153984daf63a07e186827e, type: 3}
       propertyPath: _inputHandler
       value: 

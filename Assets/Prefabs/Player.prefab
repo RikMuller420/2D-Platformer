@@ -507,7 +507,7 @@ MonoBehaviour:
   Animator: {fileID: 1410180728817807397}
   _facingRoot: {fileID: 2807074249898325965}
   _collider: {fileID: 7338590847768534992}
-  _healthBar: {fileID: 3869176496838202093}
+  _healthBar: {fileID: 6699421508099706763}
   _inputHandler: {fileID: 0}
   _attacker: {fileID: 8139871196726839783}
   _resourceCollector: {fileID: 4897825661219051733}
@@ -758,6 +758,14 @@ PrefabInstance:
       propertyPath: Health
       value: 
       objectReference: {fileID: 6190143617985544991}
+    - target: {fileID: 2668434590325101825, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
+      propertyPath: _canvasGroup
+      value: 
+      objectReference: {fileID: 3869176496838202093}
+    - target: {fileID: 6075072532092551210, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -768,6 +776,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5495267601867114599, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
   m_PrefabInstance: {fileID: 8786821127882431114}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6699421508099706763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2668434590325101825, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
+  m_PrefabInstance: {fileID: 8786821127882431114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd38c09be047d94e96f66032ac34697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8824712368255492194 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 254068988542794472, guid: 213dd942305230b4582f48d0259f13c8, type: 3}
