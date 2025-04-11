@@ -37,7 +37,7 @@ public class SpellZoneDetector : MonoBehaviour
         _spellOwner = spellOwner;
     }
 
-    public bool TryGetClosestTarget(out IDamagable closestTarget)
+    public bool TryGetClosestTarget(out Health closestTarget)
     {
         closestTarget = null;
 

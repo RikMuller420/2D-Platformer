@@ -86,14 +86,20 @@ public class VampirismSpell : MonoBehaviour
 
     private void PerformVampirismTick()
     {
-        if (_zoneDetector.TryGetClosestTarget(out IDamagable target) == false)
+        if (_zoneDetector.TryGetClosestTarget(out Health targetHealth) == false)
         {
             return;
         }
 
-        float hitPoints = Time.deltaTime * _damagePerSecond;
-        target.TakeDamage(hitPoints);
-        _spellOwner.Heal(hitPoints);
+        float damage = Time.deltaTime * _damagePerSecond;
+
+        if (damage > targetHealth.Value)
+        {
+            damage = targetHealth.Value;
+        }
+
+        targetHealth.TakeDamage(damage);
+        _spellOwner.Heal(damage);
     }
 
     private void SetNewState(SpellState state)
